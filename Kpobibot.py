@@ -62,26 +62,29 @@ KIND REGARDS,
 MANAGEMENT
 contact:0552707677
 """
-
-while True:
-    response = requests.get(url + 'getUpdates')
-    all_response = response.json()
-    result = all_response['result'][-1]
-        
-    if result['message']['chat']['type'] == 'group':
-        if result['update_id'] not in update_id:
-            update_id.append(result['update_id'])
-            try:
-                if result['message']['new_chat_members']:
-                    print (result['message']['new_chat_members'][0]['last_name'])
-                    chat_id = result['message']['chat']['id']
-                    gtitle = result['message']['chat']['title']
-                    name = result['message']['new_chat_members'][0]['last_name']
-                    params = {'chat_id': chat_id, 'text': emoji.emojize('Hi '+ name +
-                    ', Welcome to '+ gtitle + text, use_aliases=True)}
-                    response = requests.post(url + 'sendMessage', data=params)
-            except:
-                continue
-        
-r"""if result['message']['chat']['id'] not in worked_on_list:
-                    worked_on_list.append(result['message']['chat']['id'])"""
+def bot():
+    while True:
+        response = requests.get(url + 'getUpdates')
+        all_response = response.json()
+        result = all_response['result'][-1]
+            
+        if result['message']['chat']['type'] == 'group':
+            if result['update_id'] not in update_id:
+                update_id.append(result['update_id'])
+                try:
+                    if result['message']['new_chat_members']:
+                        print (result['message']['new_chat_members'][0]['last_name'])
+                        chat_id = result['message']['chat']['id']
+                        gtitle = result['message']['chat']['title']
+                        name = result['message']['new_chat_members'][0]['last_name']
+                        params = {'chat_id': chat_id, 'text': emoji.emojize('Hi '+ name +
+                        ', Welcome to '+ gtitle + text, use_aliases=True)}
+                        response = requests.post(url + 'sendMessage', data=params)
+                except:
+                    continue
+                
+try:
+    bot()
+    
+except:
+    pass
