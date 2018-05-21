@@ -1,1 +1,1 @@
-web: python Kpobibot.py --log-file -
+web: python Kpobibot.py 
