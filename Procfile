@@ -1,1 +1,1 @@
-web: python Kpobibot.py 
+work: python Kpobibot.py 
